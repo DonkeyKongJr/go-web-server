@@ -10,7 +10,6 @@ import (
 )
 
 var people []Person
-var results []string
 
 func GetPeople(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(people)
@@ -73,12 +72,16 @@ func SquareHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func main() {
-	router := mux.NewRouter()
+func provideTestPeople(){
 	people = append(people, Person{ID: "1", Firstname: "Patrick", Lastname: "Schadler"})
 	people = append(people, Person{ID: "2", Firstname: "Frodo", Lastname: "Beutlin"})
 	people = append(people, Person{ID: "3", Firstname: "Samweis", Lastname: "Gamdschie"})
+}
 
+func main() {
+	provideTestPeople()
+
+	router := mux.NewRouter()
 	router.HandleFunc("/people", GetPeople).Methods("GET")
 	router.HandleFunc("/addTwoNumber", AddTwoNumbersHandler)
 	router.HandleFunc("/squareNumber", SquareHandler)
