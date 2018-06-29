@@ -15,6 +15,7 @@ func main() {
 	router.HandleFunc("/subtract", SubtractNumbersHandler)
 	router.HandleFunc("/modulo", ModuloNumbersHandler)
 	router.HandleFunc("/multiply", MultiplyNumbersHandler)
+	router.HandleFunc("/factorial", FactorialNumbersHandler)
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }
