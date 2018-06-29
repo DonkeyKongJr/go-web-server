@@ -19,12 +19,6 @@ type Person struct {
 	Lastname  string   `json:"lastname,omitempty"`
 }
 
-type CalcNumbers struct {
-	Number1 float32
-	Number2 float32
-}
-
-
 func provideTestPeople(){
 	people = append(people, Person{ID: "1", Firstname: "Patrick", Lastname: "Schadler"})
 	people = append(people, Person{ID: "2", Firstname: "Frodo", Lastname: "Beutlin"})
@@ -40,6 +34,7 @@ func main() {
 	router.HandleFunc("/squareNumber", SquareHandler)
 	router.HandleFunc("/divideNumber", DivideNumbersHandler)
 	router.HandleFunc("/subtract", SubtractNumbersHandler)
+	router.HandleFunc("/modulo", ModuloNumbersHandler)
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }

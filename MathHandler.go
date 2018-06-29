@@ -18,3 +18,7 @@ func DivideNumbers(number1 float32, number2 float32) float32{
 	}
 	return number1 / number2;
 }
+
+func ModuloNumber(number1 int32, number2 int32) int32 {
+	return number1 % number2;
+}
