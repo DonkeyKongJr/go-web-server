@@ -39,6 +39,7 @@ func main() {
 	router.HandleFunc("/addTwoNumber", AddTwoNumbersHandler)
 	router.HandleFunc("/squareNumber", SquareHandler)
 	router.HandleFunc("/divideNumber", DivideNumbersHandler)
+	router.HandleFunc("/subtract", SubtractNumbersHandler)
 
 	log.Fatal(http.ListenAndServe(":8000", router))
 }

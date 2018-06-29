@@ -4,6 +4,10 @@ func AddTwoNumbers(firstNumber float32, secondNumber float32) float32{
 	return firstNumber + secondNumber;
 }
 
+func SubtractTwoNumbers(firstNumber float32, secondNumber float32) float32{
+	return firstNumber - secondNumber;
+}
+
 func SquareNumber(number float32) float32{
 	return number * number;
 }
