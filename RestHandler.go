@@ -7,7 +7,6 @@ import (
 	"fmt"
 )
 
-// PostHandler converts post request body to string
 func SquareHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
@@ -26,7 +25,6 @@ func SquareHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// PostHandler converts post request body to string
 func AddTwoNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
@@ -45,7 +43,6 @@ func AddTwoNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// PostHandler converts post request body to string
 func DivideNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
@@ -64,7 +61,6 @@ func DivideNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// PostHandler converts post request body to string
 func SubtractNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
@@ -83,7 +79,6 @@ func SubtractNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// PostHandler converts post request body to string
 func ModuloNumbersHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		body, err := ioutil.ReadAll(r.Body)
@@ -97,6 +92,24 @@ func ModuloNumbersHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		fmt.Fprint(w, ModuloNumber(calcNumbers.Number1, calcNumbers.Number2))
+	} else {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+	}
+}
+
+func MultiplyNumbersHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		body, err := ioutil.ReadAll(r.Body)
+		if err != nil {
+			http.Error(w, "Error reading request body",
+				http.StatusInternalServerError)
+		}
+		var calcNumbers CalcNumbers
+		if err := json.Unmarshal([]byte(body), &calcNumbers); err != nil {
+			panic(err)
+		}
+
+		fmt.Fprint(w, MultiplyTwoNumbers(calcNumbers.Number1, calcNumbers.Number2))
 	} else {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 	}
